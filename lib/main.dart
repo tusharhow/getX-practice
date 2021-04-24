@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_web_practice/data.dart';
 import 'package:get/get.dart';
 
 void main() {
@@ -39,26 +38,50 @@ class HomePage extends StatelessWidget {
                   Spacer(),
                   ElevatedButton(
                     onPressed: () {
-                      Get.snackbar(
-                        'Another Snack1',
-                        '',
-                        snackPosition: SnackPosition.TOP,
-                        colorText: Colors.green,
-                        backgroundColor: Colors.black45,
-                        dismissDirection: SnackDismissDirection.HORIZONTAL,
-                        messageText: (Text(
-                          'ANother SNack',
-                          style: TextStyle(color: Colors.white),
-                        )),
-                      );
+                      // Get.snackbar(
+                      //   'Another Snack1',
+                      //   '',
+                      //   snackPosition: SnackPosition.TOP,
+                      //   colorText: Colors.green,
+                      //   backgroundColor: Colors.black45,
+                      //   dismissDirection: SnackDismissDirection.HORIZONTAL,
+                      //   messageText: (Text(
+                      //     'ANother SNack',
+                      //     style: TextStyle(color: Colors.white),
+                      //   )),
+                      // );
 
-                      Get.defaultDialog(
-                        title: 'Dialog Title',
-                        middleText: 'THis is dialog body text',
-                        backgroundColor: Colors.greenAccent,
-                        onCancel: () {},
-                        cancelTextColor: Colors.black,
-                        buttonColor: Colors.grey,
+                      // Get.defaultDialog(
+                      //   title: 'Dialog Title',
+                      //   middleText: 'THis is dialog body text',
+                      //   backgroundColor: Colors.greenAccent,
+                      //   onCancel: () {},
+                      //   cancelTextColor: Colors.black,
+                      //   buttonColor: Colors.grey,
+                      // );
+
+                      Get.bottomSheet(
+                        Container(
+                          child: Wrap(
+                            children: [
+                              ListTile(
+                                leading: Icon(Icons.lightbulb),
+                                title: Text('Light Theme'),
+                                onTap: () {
+                                  Get.changeTheme(ThemeData.light());
+                                },
+                              ),
+                              ListTile(
+                                leading: Icon(Icons.directions_walk_sharp),
+                                title: Text('Dark Theme'),
+                                onTap: () {
+                                  Get.changeTheme(ThemeData.dark());
+                                },
+                              ),
+                            ],
+                          ),
+                        ),
+                        barrierColor: Colors.transparent,
                       );
                     },
                     child: Text(
