@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_web_practice/controllers/my_controller.dart';
 import 'package:get/get.dart';
 
 void main() {
@@ -7,6 +9,7 @@ void main() {
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
+
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
@@ -20,81 +23,38 @@ class MyApp extends StatelessWidget {
   }
 }
 
+// ignore: must_be_immutable
 class HomePage extends StatelessWidget {
-  const HomePage({Key key}) : super(key: key);
-
+  final MyController myController = Get.put(MyController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
+      body: Center(
+          child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Container(
-            width: double.infinity,
-            color: Colors.green,
-            height: 400,
-            child: SafeArea(
-              child: Column(
-                children: [
-                  Spacer(),
-                  ElevatedButton(
-                    onPressed: () {
-                      // Get.snackbar(
-                      //   'Another Snack1',
-                      //   '',
-                      //   snackPosition: SnackPosition.TOP,
-                      //   colorText: Colors.green,
-                      //   backgroundColor: Colors.black45,
-                      //   dismissDirection: SnackDismissDirection.HORIZONTAL,
-                      //   messageText: (Text(
-                      //     'ANother SNack',
-                      //     style: TextStyle(color: Colors.white),
-                      //   )),
-                      // );
-
-                      // Get.defaultDialog(
-                      //   title: 'Dialog Title',
-                      //   middleText: 'THis is dialog body text',
-                      //   backgroundColor: Colors.greenAccent,
-                      //   onCancel: () {},
-                      //   cancelTextColor: Colors.black,
-                      //   buttonColor: Colors.grey,
-                      // );
-
-                      Get.bottomSheet(
-                        Container(
-                          child: Wrap(
-                            children: [
-                              ListTile(
-                                leading: Icon(Icons.lightbulb),
-                                title: Text('Light Theme'),
-                                onTap: () {
-                                  Get.changeTheme(ThemeData.light());
-                                },
-                              ),
-                              ListTile(
-                                leading: Icon(Icons.directions_walk_sharp),
-                                title: Text('Dark Theme'),
-                                onTap: () {
-                                  Get.changeTheme(ThemeData.dark());
-                                },
-                              ),
-                            ],
-                          ),
-                        ),
-                        barrierColor: Colors.transparent,
-                      );
-                    },
-                    child: Text(
-                      'Show Dialog',
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          )
+          GetBuilder<MyController>(
+            init: MyController(),
+            initState: (_) {},
+            builder: (_) {
+              return Text(
+                'Output is: ${myController.num}',
+                style: TextStyle(fontSize: 25),
+              );
+            },
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          ElevatedButton(
+            onPressed: () {
+              myController.increament();
+            },
+            child: Text('Increament'),
+          ),
         ],
-      ),
+      )),
     );
   }
 }
