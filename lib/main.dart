@@ -53,6 +53,12 @@ class HomePage extends StatelessWidget {
             },
             child: Text('Increament'),
           ),
+          ElevatedButton(
+            onPressed: () {
+              myController.decreament();
+            },
+            child: Text('Decreament'),
+          ),
         ],
       )),
     );

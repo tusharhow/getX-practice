@@ -7,4 +7,14 @@ class MyController extends GetxController {
     num++;
     update();
   }
+
+  void decreament() {
+    num--;
+    if (num == 0) {
+      increament();
+    } else {
+      print('Error');
+    }
+    update();
+  }
 }
